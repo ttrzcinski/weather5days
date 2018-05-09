@@ -6,7 +6,6 @@
 <!-- Make it pretty -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="styles/dastyle.css">
 <!-- end of Make it pretty -->
@@ -15,29 +14,22 @@
 <script type="text/javascript" src="js/daposition.js"></script>
 <!-- end of Backend functions -->
 </head>
-<body onload="showDays();">
+<body onload="showDays();"><!-- showPosition(); -->
     <div class="container">
         <!-- JS is blocked -->
         <noscript>
-            <p>Bugger, your browser does not support JavaScript!</p>
-            Provide me then with the name of your City: <input id="dacity">
-            <button type="button" class="btn btn-primary" onclick="showPositionByCity()">Submit</button>
+            <p>Still application makes works ony in JS. 
+                Think about updating Your browser and allowing JS to do it's magic.</p>
         </noscript>
         <!-- end of JS is blocked -->
-        <h1>Weather for 5 days - Your location, now..</h1>
-        <div id="dadate">
-            The date<!--Here lands the todays date. -->
-        </div>
-
         <div id="daresult">
             The result<!-- Here lands the geoposition. -->
         </div>
-        <button type="button" class="btn btn-primary" 
-                onclick="showPosition();">Show Position</button>
-        <button type="button" class="btn btn-primary" 
-                onclick="daweather.showWeather();">Show Weather</button>
+        <!--<button type="button" class="btn btn-primary" 
+                onclick="showWeather();">Show Weather</button>-->
         <!-- Weather as a list of days -->
-        <h1>Weather for next 5 days</h1>
+        <h1>Weather for next 5 days in <span id="mycity">Słupsk</span></h1>
+        <h5 id="locserv">Waiting for Location service..</h5>
         <ul class="list-group" id="resultdays">
             <li class="list-group-item">Reading the calendar..</li>
         </ul>
