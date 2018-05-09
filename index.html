@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>5-days weather in Your location</title>
+<!-- Make it pretty -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="styles/dastyle.css">
+<!-- end of Make it pretty -->
+<!-- Backend functions -->
+<script type="text/javascript" src="js/dadate.js"></script>
+<script type="text/javascript" src="js/daposition.js"></script>
+<!-- end of Backend functions -->
+</head>
+<body onload="showDays();">
+    <div class="container">
+        <!-- JS is blocked -->
+        <noscript>
+            <p>Bugger, your browser does not support JavaScript!</p>
+            Provide me then with the name of your City: <input id="dacity">
+            <button type="button" class="btn btn-primary" onclick="showPositionByCity()">Submit</button>
+        </noscript>
+        <!-- end of JS is blocked -->
+        <h1>Weather for 5 days - Your location, now..</h1>
+        <div id="dadate">
+            The date<!--Here lands the todays date. -->
+        </div>
+
+        <div id="daresult">
+            The result<!-- Here lands the geoposition. -->
+        </div>
+        <button type="button" class="btn btn-primary" 
+                onclick="showPosition();">Show Position</button>
+        <button type="button" class="btn btn-primary" 
+                onclick="daweather.showWeather();">Show Weather</button>
+        <!-- Weather as a list of days -->
+        <h1>Weather for next 5 days</h1>
+        <ul class="list-group" id="resultdays">
+            <li class="list-group-item">Reading the calendar..</li>
+        </ul>
+
+        <p id="demo">demo</p>
+        <script type="text/javascript" src="js/daweather.js"></script>
+        <div id="daweatherjson">
+                The weather json<!-- Here lands the weather. -->
+        </div>
+    </div>
+</body>
+</html>
