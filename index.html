@@ -15,7 +15,7 @@
 <script type="text/javascript" src="js/dabackend.js"></script>
 <!-- end of Backend functions -->
 </head>
-<body onload="showDays();">
+<body onload="showDays();showCity();showWeather();">
     <div class="container">
         <!-- JS is blocked -->
         <noscript>
@@ -24,7 +24,7 @@
         </noscript>
         <!-- end of JS is blocked -->
         <!-- Weather as a list of days -->
-        <h1>Weather for next 5 days in <span id="mycity">Słupsk</span></h1>
+        <h1>Weather for next 5 days in <span id="mycity">Unknown place</span></h1>
 
         <table class="table">
             <thead>

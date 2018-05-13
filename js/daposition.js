@@ -16,62 +16,69 @@ var currLocation = {
 // Hardcoded API of location service.  
 const urlLocationAPI = 'https://ipinfo.io/json';
 
-/**
- * Called to process request of reading geolocation from internet connection.
- * The result is saved in currLocation property
- * @param {*} e  
- */
-function processRequestLoc(e) {
-  // 4 means request completed, 200 means success HTTP response
-  if (xmlhttplLoc.readyState === 4 && xmlhttplLoc.status === 200) {
-    xmlhttplLoc.responseText = xmlhttplLoc.responseText.replace(' ', '');
-    var responseLoc = JSON.parse(xmlhttplLoc.responseText);
-    currLocation.city = responseLoc.city;
-    currLocation.country = responseLoc.country;
-    //Location is divided by ',' and needs to be split in lat and lon
-    currLocation.lat = responseLoc.loc.split(',')[0];
-    currLocation.lon = responseLoc.loc.split(',')[1];
-    currLocation.renew = true;
-
-    document.getElementById('mycity').innerHTML =
-      '' + currLocation.city + ' (' + currLocation.country + ')';
-    document.getElementById('locserv').innerHTML = '';
-  } else {
-    document.getElementById('mycity').innerHTML = 'Nowhere?!)';
-    document.getElementById('locserv').innerHTML =
-      'Couldn\'t connect to Location service';
+class DaPosition {
+  constructor() {
+    this.getMyLocation();
   }
-}
 
-/**
- * Obtains location of user reading it from internet service provider.
- */
-function getMyLocation() {
-  let XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
-  xmlhttplLoc = new XMLHttpRequest();
-  xmlhttplLoc.open('GET', urlLocationAPI, true);
-  xmlhttplLoc.send();
-  document.getElementById('locserv').innerHTML = '' +
-    'Reading location from internet service provider.';
-  xmlhttplLoc.addEventListener('readystatechange', processRequestLoc, false);
+  /**
+   * Called to process request of reading geolocation from internet connection.
+   * The result is saved in currLocation property
+   * @param {*} e  
+   */
+  processRequestLoc(e) {
+    // 4 means request completed, 200 means success HTTP response
+    if (xmlhttplLoc.readyState === 4 && xmlhttplLoc.status === 200) {
+      xmlhttplLoc.responseText = xmlhttplLoc.responseText.replace(' ', '');
+      var responseLoc = JSON.parse(xmlhttplLoc.responseText);
+      currLocation.city = responseLoc.city;
+      currLocation.country = responseLoc.country;
+      //Location is divided by ',' and needs to be split in lat and lon
+      currLocation.lat = responseLoc.loc.split(',')[0];
+      currLocation.lon = responseLoc.loc.split(',')[1];
+      currLocation.renew = true;
 
-  /* {
-  "city": "Gdańsk",
-  "region": "Pomerania",
-  "country": "PL",
-  "loc": "54.3637,18.5558"
-  } */
-}
+      document.getElementById('mycity').innerHTML =
+        '' + currLocation.city + ' (' + currLocation.country + ')';
+      document.getElementById('locserv').innerHTML = '';
+    } else {
+      document.getElementById('mycity').innerHTML = 'Nowhere?!)';
+      document.getElementById('locserv').innerHTML =
+        'Couldn\'t connect to Location service';
+    }
+  }
 
-function getMyLocation_asObject() {
-  //Call to update location
-  this.getMyLocation();
-  //Return current location
-  return currLocation;
+  /**
+   * Obtains location of user reading it from internet service provider.
+   */
+  getMyLocation() {
+    let XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+    xmlhttplLoc = new XMLHttpRequest();
+    xmlhttplLoc.open('GET', urlLocationAPI, true);
+    xmlhttplLoc.send();
+    document.getElementById('locserv').innerHTML = '' +
+      'Reading location from internet service provider.';
+    xmlhttplLoc.addEventListener('readystatechange', processRequestLoc, false);
+
+    /* {
+    "city": "Gdańsk",
+    "region": "Pomerania",
+    "country": "PL",
+    "loc": "54.3637,18.5558"
+    } */
+  }
+
+  getMyLocation_asObject() {
+    //Call to update location
+    this.getMyLocation();
+    //Return current location
+    return currLocation;
+  }
+
 }
 
 module.exports = {
-  currLocation: currLocation,
-  getMyLocation: getMyLocation,
-  getMyLocation_asObject: getMyLocation_asObject
+  currLocation: DaPosition.currLocation,
+  getMyLocation: DaPosition.getMyLocation,
+  getMyLocation_asObject: DaPosition.getMyLocation_asObject
 };

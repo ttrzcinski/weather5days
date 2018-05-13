@@ -6,9 +6,12 @@ const appId = 'db0586ae96c5940f50c640169cd2a211';
 
 var xmlhttp = null;
 
-class DaWeather {
-  constructor() {
+var lat, lon;
 
+class DaWeather {
+  constructor(latitude, longitude) {
+    this.lat = latitude;
+    this.lon = longitude;
   }
 
   /**
