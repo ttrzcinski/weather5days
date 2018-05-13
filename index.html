@@ -12,33 +12,38 @@
 <!-- Backend functions -->
 <script type="text/javascript" src="js/dadate.js"></script>
 <script type="text/javascript" src="js/daposition.js"></script>
+<script type="text/javascript" src="js/dabackend.js"></script>
 <!-- end of Backend functions -->
 </head>
-<body onload="showDays();"><!-- showPosition(); -->
+<body onload="showDays();">
     <div class="container">
         <!-- JS is blocked -->
         <noscript>
             <p>Still application makes works ony in JS. 
-                Think about updating Your browser and allowing JS to do it's magic.</p>
+               Think about updating Your browser and allowing JS to do it's magic.</p>
         </noscript>
         <!-- end of JS is blocked -->
-        <div id="daresult">
-            The result<!-- Here lands the geoposition. -->
-        </div>
-        <!--<button type="button" class="btn btn-primary" 
-                onclick="showWeather();">Show Weather</button>-->
         <!-- Weather as a list of days -->
         <h1>Weather for next 5 days in <span id="mycity">Słupsk</span></h1>
-        <h5 id="locserv">Waiting for Location service..</h5>
-        <ul class="list-group" id="resultdays">
-            <li class="list-group-item">Reading the calendar..</li>
-        </ul>
 
-        <p id="demo">demo</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Temp.</th>
+                    <th>Sky</th>
+                </tr>
+            </thead>
+            <tbody id="resultdays">
+                  <tr>
+                    <td>Reading the calendar..</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+            </tbody>
+        </table>
         <script type="text/javascript" src="js/daweather.js"></script>
-        <div id="daweatherjson">
-                The weather json<!-- Here lands the weather. -->
-        </div>
+        <p id="demo">demo</p>
     </div>
 </body>
 </html>
